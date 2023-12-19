@@ -8,6 +8,7 @@ session_start();
 else{
 $aksi="modul/mod_monitoring/aksi_monitoring.php";
 $excel="modul/mod_monitoring/excelmonitoring.php";
+//$excel="modul/mod_monitoring/excelmonitoring.php?tgl_mulai='$tgl_mulai'&tgl_sampai='$tgl_sampai'&status_perbaikan='$status_perbaikan'";
 $bast="modul/mod_monitoring/bast_kerusakan.php";
 switch ($_GET[act]) {
   default:
@@ -227,11 +228,11 @@ switch ($_GET[act]) {
         </tbody>
         </table>
       </div>
-      <!-- <div class='box-footer'>
-       <a href='?module=monitoring&act=excelmonitoring' class='btn btn-success'><i class='fa fa-file-excel-o'></i> Export Excel</a> 
-        <a href=\"$excel\" class='btn btn-success'><i class='fa fa-file-excel-o'></i> Export Excel</a> 
-        <a href= 'cetak_riwayat_kerusakan.php' target='_BLANK' class='btn btn-danger'><i class='fa fa-file-pdf-o'></i> Cetak Laporan Kerusakan</a> 	
-      </div> -->
+      <div class='box-footer'>
+        <a href='?module=monitoring&act=excelmonitoring' class='btn btn-success'><i class='fa fa-file-excel-o'></i> Export Excel</a> 
+        <!-- <a href=\"$excel\" class='btn btn-success'><i class='fa fa-file-excel-o'></i> Export Excel</a> 
+        <a href= 'cetak_riwayat_kerusakan.php' target='_BLANK' class='btn btn-danger'><i class='fa fa-file-pdf-o'></i> Cetak Laporan Kerusakan</a> 	-->
+      </div>
       </div>
     </div>
   </div>

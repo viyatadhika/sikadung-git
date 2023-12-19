@@ -241,7 +241,7 @@ switch ($_GET[act]) {
           </table>
       </div>
       <div class='box-footer'>
-        <a href='?module=monitoring&act=excelmonitoring' class='btn btn-success'><i class='fa fa-file-excel-o'></i> Export Excel</a>
+        <!-- <a href='?module=monitoring&act=excelmonitoring' class='btn btn-success'><i class='fa fa-file-excel-o'></i> Export Excel</a> -->
         <a href=\"$excel\" class='btn btn-success'><i class='fa fa-file-excel-o'></i> Export Excel</a> 
         <!-- <a href= 'cetak_riwayat_kerusakan.php' target='_BLANK' class='btn btn-danger'><i class='fa fa-file-pdf-o'></i> Cetak Laporan Kerusakan</a> -->
       </div>
