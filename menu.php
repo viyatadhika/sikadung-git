@@ -58,7 +58,7 @@ if ($_SESSION['leveluser'] == 'admin') {
 				<a href='?module=monitoring'><i class='fa fa-area-chart'></i> <span>Monitoring Kerusakan</span></a>
 			</li>
 			<li>
-				<a href='logout.php'><i class='fa fa-power-off'></i> <span>Keluar</span></a>
+				<a href='javascript:;' data-toggle='modal' data-target='#logout'><i class='fa fa-power-off'></i> <span>Keluar</span></a>
 			</li>
 	  	</ul>";
 } 
@@ -146,4 +146,5 @@ else {
 			</li>
 	  	</ul>";
 }
+
 ?>

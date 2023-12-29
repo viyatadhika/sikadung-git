@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v12.4.3 (64 bit)
-MySQL - 10.1.30-MariaDB : Database - sikadung
+MySQL - 10.3.28-MariaDB : Database - sikadung
 *********************************************************************
 */
 
@@ -26,7 +26,7 @@ CREATE TABLE `gedung` (
   `aktif` enum('Ya','Tidak') NOT NULL DEFAULT 'Ya',
   PRIMARY KEY (`id_gedung`),
   KEY `id_gedung` (`id_gedung`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 /*Data for the table `gedung` */
 
@@ -61,14 +61,15 @@ insert  into `gedung`(`id_gedung`,`nama_gedung`,`aktif`) values
 (33,'Gedung Fitness','Ya'),
 (34,'Ruang Pompa','Ya'),
 (35,'Taman Hatta Ali','Ya'),
-(36,'Menara Pengawas','Ya');
+(36,'Menara Pengawas','Ya'),
+(37,'Rumah Pimpinan','Ya');
 
 /*Table structure for table `identitas` */
 
 DROP TABLE IF EXISTS `identitas`;
 
 CREATE TABLE `identitas` (
-  `id_identitas` int(5) NOT NULL AUTO_INCREMENT,
+  `id_identitas` int(11) NOT NULL AUTO_INCREMENT,
   `kementerian` varchar(100) DEFAULT NULL,
   `satker` varchar(100) DEFAULT NULL,
   `instansi` varchar(250) DEFAULT NULL,
@@ -95,7 +96,7 @@ CREATE TABLE `jenis_kerusakan` (
   `nama_kerusakan` varchar(500) DEFAULT NULL,
   `aktif` enum('Ya','Tidak') DEFAULT NULL,
   PRIMARY KEY (`id_jenis_kerusakan`)
-) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 /*Data for the table `jenis_kerusakan` */
 
@@ -158,88 +159,91 @@ CREATE TABLE `kerusakan` (
   `nama_file` varchar(100) DEFAULT NULL,
   `nama_teknisi` varchar(100) DEFAULT NULL,
   `tgl_perbaikan` date DEFAULT NULL,
-  `id_status_perbaikan` int(11) DEFAULT '3',
+  `id_status_perbaikan` int(11) DEFAULT 3,
   `volume` varchar(100) DEFAULT NULL,
   `nama_file_perbaikan` varchar(500) DEFAULT NULL,
   `nama_file_data_dukung` varchar(500) DEFAULT NULL,
   `keterangan_perbaikan` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id_kerusakan`)
-) ENGINE=MyISAM AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=270 DEFAULT CHARSET=latin1;
 
 /*Data for the table `kerusakan` */
 
 insert  into `kerusakan`(`id_kerusakan`,`nomor_kerusakan`,`tgl_kerusakan`,`pelapor`,`id_gedung`,`id_jenis_kerusakan`,`lokasi_kerusakan`,`keterangan_kerusakan`,`nama_file`,`nama_teknisi`,`tgl_perbaikan`,`id_status_perbaikan`,`volume`,`nama_file_perbaikan`,`nama_file_data_dukung`,`keterangan_perbaikan`) values 
-(24,'001/Bld.1/S.Umum/LK/2/2021','2021-02-13','Engkos',17,2,'Aula Ruang Utama','Dinding peredam lepas','16131816996127825110259052527615.jpg','Sangwar','2021-03-14',2,'1 Lembar',NULL,NULL,'Sudah diperbaiki'),
-(25,'002/Bld.1/S.Umum/LK/2/2021','2021-02-13','Rukmana',24,13,'Lantai 1','Lampu koridor ruang tempat wudhu','IMG-20210215-WA0033.jpg','Supri','2021-02-16',2,'15 lampu essensial dan 6 lampu TL 36 watt','1613442913210.jpg',NULL,'Untuk pengadaan alat listrik tahun 2021 harap dipercepat dan lengkap. Tks'),
-(26,'003/Bld.1/S.Umum/LK/2/2021','2021-02-15','Engkos',17,5,'Kelas 15 Lantai 2','Engsel pintu lepas','IMG-20210214-WA0000.jpg','Sangwar','2021-02-24',2,'1',NULL,NULL,'scrup baut pada lepas'),
-(27,'004/Bld.1/S.Umum/LK/2/2021','2021-02-15','Engkos',19,2,'Kamar Ketua dan Staf','Sedang di kerjakan pak rahmat','IMG_20210215_094322.jpg','Sangwar','2021-03-14',5,'',NULL,NULL,'Perbaikan dinding retak, Cat Nodrop, Pasang walpaper kembali.'),
-(28,'005/Bld.1/S.Umum/LK/2/2021','2021-02-15','Engkos',19,13,'Kamar Staf','Lampu TL long di wastafel kamar staf mati ','IMG_20210215_095156.jpg','Suherman','2021-02-26',2,'','IMG20210226094044.jpg','',''),
-(29,'006/Bld.1/S.Umum/LK/2/2021','2021-02-15','Rukmana',25,7,'Luar Gedung','Plafon luar berjamur','IMG_20210215_100723.jpg','Sangwar','2021-03-18',5,'',NULL,NULL,'Plafon Overstag Harus Dicat termasuk Dindingnya'),
-(32,'008/Bld.1/S.Umum/LK/2/2021','2021-02-15','Rukmana',24,7,'Selasar Basement Dekat Ruang Marbot','Plafon selasar basement depan ruang marbot bocor','IMG_20210215_100149.jpg','Sangwar','2021-03-18',5,'',NULL,NULL,'Masih dalam perawatan pak rahmat'),
-(34,'010/Bld.1/S.Umum/LK/2/2021','2021-02-15','Rukmana',30,38,'Kelas Besar Lantai 1','Backdrop white board depan podium keropos','IMG_20210215_085320.jpg','Sangwar','2021-03-18',5,'0.90*2.40',NULL,NULL,'Harus diganti mebler karena keropos'),
-(35,'011/Bld.1/S.Umum/LK/2/2021','2021-02-15','Saipul',3,12,'Lantai 1 No. 14','Otomatis kartu listrik tidak berfungsi','20210215_111737.jpg','Suherman','2021-02-26',2,'',NULL,NULL,''),
-(36,'012/Bld.1/S.Umum/LK/2/2021','2021-02-15','Saipul',3,37,'Lantai 2 No. 3','Railing balkon copot','20210215_111520.jpg','Sangwar','2021-03-18',5,'0.80 M1',NULL,NULL,'Las kembali, Dinabol, Finish Cat'),
-(37,'013/Bld.1/S.Umum/LK/2/2021','2021-02-15','Saipul',3,37,'Lantai 2 No. 7','Railing balkon copot','20210215_111459.jpg','Sangwar','2021-03-18',5,'0.80 M1',NULL,NULL,'Las kembali, Dinabol, Finish Cat'),
-(38,'014/Bld.1/S.Umum/LK/2/2021','2021-02-16','Rukmana',25,7,'Toilet Depan','Plafon depan toilet balai pertemuan jebol','IMG_20210216_093816.jpg','Sangwar','2021-03-18',5,'0.35*2.50',NULL,NULL,'Pergantian Plafon Finish Pengecatan'),
-(39,'015/Bld.1/S.Umum/LK/2/2021','2021-02-16','Sumantri',1,7,'Lantai 1 No. 5','List plafon keropos','IMG-20210216-WA0004.jpg','Sangwar','2021-03-18',5,'5 M1',NULL,NULL,'Harus diganti Karena keropos'),
-(43,'017/Bld.1/S.Umum/LK/2/2021','2021-02-22','Saipul',2,14,'VIP No. 6','Bunyi terus','16139643913796350730865994882025.jpg','Suherman','2021-03-01',2,'',NULL,NULL,'Kabel dikontaktor kendor'),
-(44,'018/Bld.1/S.Umum/LK/2/2021','2021-02-22','Engkos',17,6,'Pantry Kelas Lantai 2','Lemari kitchen set pantry kelas lantai 2 rusak','16139648416072793470090545778553.jpg','Sangwar','2021-03-18',5,'1 Lembar',NULL,NULL,'Harus Diganti Pintunya karena keropos'),
-(45,'019/Bld.1/S.Umum/LK/2/2021','2021-02-22','Engkos',17,13,'Koridor Kelas Lantai 2','Lampu PLS mati 6 buah','16139650397568163521032401379219.jpg','Suherman','2021-02-24',2,'',NULL,NULL,'Banyak fitting lampu yg rusak'),
-(46,'020/Bld.1/S.Umum/LK/2/2021','2021-02-22','Engkos',17,7,'Kelas 14','Bocor dari AC','16139652065381614535965770818121.jpg','Sangwar','2021-03-18',5,'',NULL,NULL,'Perbaiki Instalasi Air AC'),
-(47,'021/Bld.1/S.Umum/LK/2/2021','2021-02-22','Engkos',17,13,'Koridor Kelas Lantai 2','Lampu kolidor TL long mati 17 buah','16139654282338698095175673739626.jpg','Suherman','2021-02-24',2,'','16141568381851217753370.jpg','',''),
-(48,'022/Bld.1/S.Umum/LK/2/2021','2021-02-22','Rukmana',29,2,'Ruang Server  IT','Dinding bekas ac  ruang server lt 2 perpus rusak bekas ac','IMG_20210222_144326.jpg','Sangwar','2021-03-18',5,'0.40*1.20',NULL,NULL,'Plester Ulang, Cat, Pasang Walpaper'),
-(49,'023/Bld.1/S.Umum/LK/2/2021','2021-02-23','Rukmana',29,26,'Toilet Pria Lantai 2','Sudah di perbaiki','IMG_20210222_143609.jpg','Sangwar','2021-02-24',2,'1',NULL,NULL,'Sudah Diperbaiki'),
-(50,'024/Bld.1/S.Umum/LK/2/2021','2021-02-23','Saipul',3,5,'Lantai 3 No. 19','Sudah d perbaiki','IMG-20210218-WA0005.jpg','Sangwar','2021-03-18',2,'1 Unit',NULL,NULL,'Sudah Diperbaiki'),
-(51,'025/Bld.1/S.Umum/LK/2/2021','2021-02-23','Saipul',3,5,'Lantai 3 No. 31','Kunci pintu gerendel rusak','IMG-20210218-WA0005.jpg','Teknisi','2021-03-03',2,'',NULL,NULL,'Ganti kunci ,dikerjakan sendiri'),
-(52,'026/Bld.1/S.Umum/LK/2/2021','2021-02-23','Saipul',3,7,'Lobby Utama','Plafon lobby utama bocor','20210223_091340.jpg','Sangwar','2021-03-18',5,'7*7',NULL,NULL,'Pengecatan Kembali'),
-(53,'027/Bld.1/S.Umum/LK/2/2021','2021-02-24','Saipul',3,15,'Lantai 1 No. 20','Outdoor AC rusak ','20210224_084707.jpg','Sangwar','2021-03-02',6,'',NULL,NULL,'kompresor  sudah rusak rusak'),
-(54,'028/Bld.1/S.Umum/LK/2/2021','2021-02-25','Saipul',3,5,'Pantry Lantai 1','Pintu kitchen set copot/keropos','16142211609507741947248755939726.jpg','Sangwar','2021-03-18',5,'1 Lembar',NULL,NULL,'Harus diganti pintunya karena keropos'),
-(55,'029/Bld.1/S.Umum/LK/2/2021','2021-02-26','Rukmana',29,32,'Auning Samping','Auning samping perpustakaan besinya kropos','IMG-20210225-WA0015.jpg','Sangwar','2021-03-03',5,'',NULL,NULL,'Harus diganti karena besi sudah kropos'),
-(56,'030/Bld.1/S.Umum/LK/2/2021','2021-02-26','Cecep',14,7,'Koridor Lantai 4','Bocor dari dak ','IMG20210226085748.jpg','Sangwar','2021-03-18',5,'',NULL,NULL,'Harus dimembran, Discreet miring'),
-(57,'031/Bld.1/S.Umum/LK/2/2021','2021-02-26','Cecep',14,7,'Glonteng Torrent ','Dari torrent netes','IMG20210226085737.jpg','Sangwar','2021-03-18',5,'',NULL,NULL,'Bocor bukan pada toren tapi Dak, Harus Dimembran, Screet miring'),
-(58,'032/Bld.1/S.Umum/LK/2/2021','2021-02-26','Saipul',3,21,'Lantai 1 No. 32','Leher angsa bawah wastafel rusak copot','IMG-20210224-WA0000.jpg','Halim','2021-03-03',2,'1 unit',NULL,NULL,'Silen tambah piser'),
-(59,'033/Bld.1/S.Umum/LK/2/2021','2021-02-28','Rukmana',31,4,'Ruang Periksa','Sudah di perbaiki','IMG-20210303-WA0007.jpg','Sangwar','2021-03-03',2,'',NULL,NULL,'Sudah selesai diperbaiki'),
-(60,'001/Bld.1/S.Umum/LK/3/2021','2021-03-01','Cecep',15,7,'Lantai 1 No. 3','Tetesan air atau rembesan dari kamar mandi lantai 2 no 3','IMG20210301082820.jpg','Sangwar','2021-03-10',5,'0.90*1.20+1.35*1.45',NULL,NULL,'Bobok kamar mandi, waterproving, perbaikan instalasi air kotor, pasang kembali keramik'),
-(61,'002/Bld.1/S.Umum/LK/3/2021','2021-03-01','Cecep',14,29,'Lantai 4 No. 3','Flexible WTH bocor ','IMG-20210301-WA0014.jpg','Sangwar','2021-03-10',2,'1','IMG-20210310-WA0011.jpg','','Diganti plexiblenya'),
-(62,'003/Bld.1/S.Umum/LK/3/2021','2021-03-01','Saipul',2,7,'Lantai 2 No. 10','Plafon depan cermin bocor','IMG-20210301-WA0009.jpg','Sangwar','2021-03-15',2,'1','20210315_100411.jpg','','Water hiter sudah selesai diperbaiki, tinggal pengecatan plafon kamar mandi Uk 1*1 dan pengecatan plafon Ruang Tamu Ukuran 1*0.50'),
-(63,'004/Bld.1/S.Umum/LK/3/2021','2021-03-03','Rukmana',30,2,'Lantai 1 Ruang WI Utama','Ruang wi utama lab lt 1 dinding walfafer rusak','IMG_20210303_091303.jpg','Sangwar','2021-03-03',5,'',NULL,NULL,'Perbaikan dinding retak, plester finish aci, cat no dropp, pasang walpaper kembali'),
-(64,'005/Bld.1/S.Umum/LK/3/2021','2021-03-04','Sangwar',17,10,'Aula','Papan nama petunjuk upacara rusak sudah karatan perlu dicat ulang, jumlah ada 14 unit','16148250344071507543506.jpg','Sangwar','2021-03-04',5,'14 unit',NULL,NULL,'Usulan cat ulang (Duco) '),
-(65,'006/Bld.1/S.Umum/LK/3/2021','2021-03-05','Saipul',3,24,'Lantai 1 No. 23','Kloset ngocor terus tidak bisa mati','IMG-20210305-WA0006.jpg','Sangwar','2021-03-18',2,'1',NULL,NULL,'Sudah diperbaiki'),
-(66,'007/Bld.1/S.Umum/LK/3/2021','2021-03-05','Faruq',1,2,'Lantai 3','Dinding bekas instalasi ac berlubang,dan ac rusak msh diatap. Lokasi candra 1 dan candra 2','16149266089935116112425749012467.jpg','Sangwar','2021-03-18',5,'0.60*0.60*24',NULL,NULL,'Termasuk Candra 2 Ukurannya sama dan jumlahnya sama, 0.60*0.60*24'),
-(67,'008/Bld.1/S.Umum/LK/3/2021','2021-03-08','Saipul',2,13,'Lantai 3 No. 25','Lampu kamar mandi rusak mati','16151683610744018592647145657133.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
-(68,'009/Bld.1/S.Umum/LK/3/2021','2021-03-07','Saipul',2,11,'Lantai 3 No. 17','Stop kontak rusak','1615168513605693228077706985995.jpg','Umar','2021-03-16',6,'2 pcs',NULL,NULL,'pengadaan barang kurang cepat\r\n'),
-(69,'010/Bld.1/S.Umum/LK/3/2021','2021-03-08','Cecep',14,21,'Lantai 3 No. 1','Fleksibel pecah di bawah wastafel','IMG20210308084313.jpg','Sangwar','2021-03-09',2,'1','IMG-20210309-WA0005.jpg','','Sudah Diperbaiki / Diganti plexiblenya'),
-(70,'011/Bld.1/S.Umum/LK/3/2021','2021-03-09','Halim',31,24,'Kloset','Airnya tidak keluar','IMG-20210309-WA0004.jpg','Sangwar','2021-03-09',2,'1',NULL,NULL,'Sudah Diperbaiki'),
-(71,'012/Bld.1/S.Umum/LK/3/2021','2021-03-09','Halim',14,13,'Atas Wastafel Kamar Mandi','Lampu atas wastafel lepas / mau jatuh','IMG-20210309-WA0006.jpg','Umar','2021-03-16',2,'1 pcs',NULL,NULL,''),
-(72,'013/Bld.1/S.Umum/LK/3/2021','2021-03-08','Cecep ',14,21,'Wastapel Dapur','Flexible bocor','IMG-20210309-WA0005.jpg','Sangwar','2021-03-09',2,'1','IMG-20210309-WA0005.jpg','','Sudah diperbaiki'),
-(73,'014/Bld.1/S.Umum/LK/3/2021','2021-03-10','Saipul',2,40,'Lantai 3 Koridor','Lis kayu koridor keropos depan kamar no 13','1615345571982450365651364452635.jpg','Sangwar','2021-03-15',5,'3 M1',NULL,NULL,'Harus diganti lisnya karena keropos'),
-(74,'015/Bld.1/S.Umum/LK/3/2021','2021-03-10','Saipul',2,24,'Lantai 2 No. 5','Kloset ngocor terus ga bisa berhenti','16153459694778321746549274742592.jpg','Sangwar','2021-03-15',2,'1','1615777030473553322289.jpg','','Sudah diperbaiki'),
-(75,'016/Bld.1/S.Umum/LK/3/2021','2021-03-09','Wawan',14,29,'Kamar Mandi','Flexible bocor','IMG-20210310-WA0009.jpg','Sangwar','2021-03-10',2,'1','IMG-20210310-WA0011.jpg','','Sudah dipeebaiki / Ganti plexible'),
-(76,'017/Bld.1/S.Umum/LK/3/2021','2021-03-12','Saipul',3,1,'Koridor Lantai 3 Depan Kamar No. 4','Keramik koridor depan kamar no. 4 ngangkat lantai 3','IMG-20210312-WA0001.jpg','Sangwar','2021-03-15',5,'1x1',NULL,NULL,'Harus diganti karena pecah'),
-(77,'018/Bld.1/S.Umum/LK/3/2021','2021-03-12','Saipul',2,29,'Lantai 3 No. 20','Waeter heater air panas tidak keluar','16155151744062400456846653194014.jpg','Sangwar','2021-03-15',2,'1','1615775205907801384225.jpg','','Sudah diperbaiki, pergantian plexible 2 unit'),
-(78,'019/Bld.1/S.Umum/LK/3/2021','2021-03-12','Saipul',2,29,'Lantai 3 No. 14','Water heater tidak panas','16155155032364867455902949151888.jpg','Sangwar','2021-03-15',2,'1','IMG-20210315-WA0001.jpg','','Sudah diperbaiki, listriknya yg bermasalah'),
-(79,'020/Bld.1/S.Umum/LK/3/2021','2021-03-12','Saipul',2,29,'Lantai 3 No. 12','Water heater tidak panas','16155155662976483603705012566134.jpg','Sangwar','2021-03-15',2,'1','1615775556325-87096867.jpg','','Colokan listrik kebakar'),
-(80,'021/Bld.1/S.Umum/LK/3/2021','2021-03-12','Saipul',2,29,'Lantai 3 No. 4','Water heater tidak panas','16155156104097300906331602719149.jpg','Sangwar','2021-03-15',2,'1','16157759388781667884586.jpg','','Colokan listrik yg bermasalah'),
-(81,'022/Bld.1/S.Umum/LK/3/2021','2021-03-15','sumantri',1,13,'Tangga','lampu neon ( ring ) mati 4 buah','1615815202731452361575.jpg','Umar','2021-03-16',2,'4 pcs',NULL,NULL,''),
-(82,'023/Bld.1/S.Umum/LK/3/2021','2021-03-17','Cecep',14,7,'Plapon bocor dari lantai 4 no 3','Bocor dari kamar mandi di lantai 4 no 3 dan airnya kena lampu ','Screenshot_2021-03-16-10-54-05-68.png','Sangwar','2021-03-26',5,'',NULL,NULL,'Membran ulang tetap, pembuatan pintu menhol Uk 1.20×0.60, Bongkar pasang plafon finishing pengecatan'),
-(83,'024/Bld.1/S.Umum/LK/3/2021','2021-03-17','sumantri',1,7,'Lantai 2 No. 3','bocor dari lantai 3 (atas wastafel )','IMG-20210317-WA0000.jpg','Sangwar','2021-03-31',5,'',NULL,NULL,'Bocor dari lantai 3, perbaikan instalasi air kotor 1 lot, penggantian plafon 1x1.'),
-(84,'025/Bld.1/S.Umum/LK/3/2021','2021-03-21','Saipul',2,16,'Lantai 1 No. 11','Dispenser tidak panas','16162915280136050970354660532407.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
-(85,'026/Bld.1/S.Umum/LK/3/2021','2021-03-22','Rukmana',24,31,'Mesin pompa','Pompa air stop kran bocor','Screenshot_2021-03-22-08-41-12-547_com.whatsapp.jpg','Umar','2021-03-22',6,'2 pcs',NULL,NULL,''),
-(86,'027/Bld.1/S.Umum/LK/3/2021','2021-03-26','Engkos',18,1,'Serbaguna lantai 1','Keramik lantai ngangkat','IMG-20210326-WA0008.jpg','Sangwar','2021-03-26',5,'12 M2','20210326_091955.jpg','','Perbaikan dan penggantian keramik baru 4 lembar'),
-(87,'028/Bld.1/S.Umum/LK/3/2021','2021-03-29','Sumantri',1,2,'Lantai 1 No. 1','dinding kamar tidur retak bagian pojok','1616982587206472276009.jpg','Sangwar','2021-03-31',5,'0.50x1','20210331_083231.jpg','','Perbaikan dinding kamar retak + pengecatan '),
-(88,'029/Bld.1/S.Umum/LK/3/2021','2021-03-30','Rukamna',30,1,'Ruang sidang semu  lt 2','Keramik pecah  belum ada  perbaikan','IMG_20210330_084014.jpg','Sangwar','2021-03-30',5,'10 M2',NULL,NULL,'Kerusakan itu ada 2 ruangan'),
-(89,'030/Bld.1/S.Umum/LK/3/2021','2021-03-30','Saipul',3,4,'Lantai 3 No. 10','Gorden copot','IMG-20210330-WA0001.jpeg','Sangwar','2021-03-30',2,'1','IMG-20210330-WA0005.jpg','','Sudah diperbaiki '),
-(90,'031/Bld.1/S.Umum/LK/3/2021','2021-03-30','Rukmana',25,24,'Toilet belakang','Kloset toilet belakang rusak','IMG_20210330_091309.jpg','Sangwar','2021-03-31',5,'1 unit',NULL,NULL,'Pergantian closed'),
-(91,'032/Bld.1/S.Umum/LK/3/2021','2021-03-31','Saipul',2,17,'Lantai 2 No. 11','Tv tidak bisa nyala atau mati total tidak ada arus listrik','16171756660262933954020636331112.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
-(92,'001/Bld.1/S.Umum/LK/4/2021','2021-04-06','Saipul',3,2,'Lantai 2 No. 1','Dinding di samping lemari yang baru terkelupas belum di pelester','20210406_154641.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
-(93,'002/Bld.1/S.Umum/LK/4/2021','2021-04-07','Saipul',3,24,'Lantai 3 No. 14','Kloset ngocor terus tidak bisa mati air nya','20210407_114548.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
-(94,'003/Bld.1/S.Umum/LK/4/2021','2021-04-09','Saipul',2,5,'VIP 4','Kusen pintu kamar ruang tidur di makan rayap','20210409_092505.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
-(95,'004/Bld.1/S.Umum/LK/4/2021','2021-04-09','Saipul',2,6,'Pantry','Lemari pintu rusak copot','20210409_093323.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
-(96,'005/Bld.1/S.Umum/LK/4/2021','2021-04-14','Saipul',3,24,'Lantai 3 No. 15','Kloset ngocor terus ga bisa mati','20210414_090457.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
-(97,'006/Bld.1/S.Umum/LK/4/2021','2021-04-16','Saipul',2,2,'Koridor ','Dinding bekas apar di setiap lantai 1,2, dan 3 belum di cat','20210416_084639.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
-(98,'007/Bld.1/S.Umum/LK/4/2021','2021-04-17','Saipul',3,5,'Lantai 2 Pantry','Pintu kitchen set copot','20210416_085911.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
-(99,'008/Bld.1/S.Umum/LK/4/2021','2021-04-16','sumantri',1,2,'Dak kanopi lobby depan','Dinding dak ab kanopi depan banyak yang retak','IMG-20210416-WA0007.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
-(100,'009/Bld.1/S.Umum/LK/4/2021','2021-04-18','Saipul',2,41,'Lantai 1 No. 11','Kusen di makan rayap','16187112009491019669026779642048.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL);
+(192,'001/Bld.1/S.Umum/LK/12/2023','2023-12-05','sumantri ',2,12,'Lantai 3 no.20','Saklar ruang tamu tidak ada','17017497698491158894851597197555.jpg','Suherman','2023-12-06',2,'1','1701833241975796691659570198580.jpg','',''),
+(193,'002/Bld.1/S.Umum/LK/12/2023','2023-12-05','sumantri ',2,12,'Lantai 3 no.22','Tutup saklar depan kamar mandi lepas','17017499178514698421945956542367.jpg','Wahyu','2023-12-05',2,'1','cakra 25.jpg','',''),
+(194,'003/Bld.1/S.Umum/LK/12/2023','2023-12-05','sumantri ',2,7,'Lantai 3 no.24','Plafon kamar tidur bocor kondisi sedang hujan','17017500075648818035110204092413.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(195,'004/Bld.1/S.Umum/LK/12/2023','2023-12-05','Sumantri ',2,12,'Lantai 3 no.25','Saklar ruang tidur rusak','17017501001061647757010279485338.jpg','Wahyu','2023-12-05',2,'1','cakra 25.jpg','',''),
+(196,'005/Bld.1/S.Umum/LK/12/2023','2023-12-05','Sumantri ',2,1,'Lantai 3 no.25','Keramik depan kamar mandi retak/ngangkat','17017501741828255928413403570192.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(197,'006/Bld.1/S.Umum/LK/12/2023','2023-12-05','Sumantri ',2,1,'Lantai 3 no.25','Keramik balkon sebagian tidak ada','17017502415683353715473211457228.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(198,'007/Bld.1/S.Umum/LK/12/2023','2023-12-05','Sumantri ',2,12,'Lantai 3 no.18','Saklar kamar mandi rusak 2','17017503451491588648231854577201.jpg','Umar','2023-12-06',6,'1',NULL,NULL,'Stok saklar ganda habis. '),
+(199,'008/Bld.1/S.Umum/LK/12/2023','2023-12-05','Sumantri ',2,1,'Lantai 3 no.16','Lantai keramik ruang tamu ngangkat ','17017504857744649695744888682405.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(200,'009/Bld.1/S.Umum/LK/12/2023','2023-12-05','Sumantri ',2,1,'Lantai 3 no.16','Lantai keramik ruang tidur ngangkat dan retak','17017505632063526798085124430547.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(201,'010/Bld.1/S.Umum/LK/12/2023','2023-12-05','Sumantri ',2,1,'Lantai 3 ruang laundry sebelah kanan','Keramik dinding ambrol','17017507363395201810794057601806.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(202,'011/Bld.1/S.Umum/LK/12/2023','2023-12-05','Sumantri ',2,11,'Lantai 3 no.12','Stop kontak kamar tidur rusak ',NULL,'Umar','2023-12-06',6,'1',NULL,NULL,'Diperlukan  sekrup panjang 10 cm dan spiser'),
+(203,'012/Bld.1/S.Umum/LK/12/2023','2023-12-05','Sumantri ',2,2,'Lantai 3 no.10','Dinding bawah wastafel berjamur','17017509066073027069462823481240.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(204,'013/Bld.1/S.Umum/LK/12/2023','2023-12-05','Sumantri ',2,12,'Lantai 3 no.8','Saklar wastafel rusak','17017509986994643460741596474975.jpg','Suherman','2023-12-06',2,'1','17018348912487572233159980571009.jpg','',''),
+(205,'014/Bld.1/S.Umum/LK/12/2023','2023-12-05','Sumantri ',2,2,'Lantai 3 no.6','Dinding bawah wastafel berjamur','17017511207047342336607532941367.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(206,'015/Bld.1/S.Umum/LK/12/2023','2023-12-05','Sumantri ',2,1,'Lantai 3 no.4','Lantai keramik ruang tamu ngangkat dan retak ','17017511889675820653528104233044.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(207,'016/Bld.1/S.Umum/LK/12/2023','2023-12-05','Sumantri ',2,5,'Lantai 3 no.4','Pintu balkon seret','17017512613265619972847270704982.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(208,'017/Bld.1/S.Umum/LK/12/2023','2023-12-05','Sumantri ',2,21,'Lantai 3 no.2','Pembuangan air wastafel bocor','17017513396223674640080132835518.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(209,'018/Bld.1/S.Umum/LK/12/2023','2023-12-05','Rukmana',30,7,'Toilet pria lantai 1','Plapon jebol netes dari toilet lantai 2','IMG-20231205-WA0050.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(210,'019/Bld.1/S.Umum/LK/12/2023','2023-12-05','Rukmana',30,7,'Kelas lab lantai 1 ','Plapon bocor dari toilet lantai 2','IMG-20231205-WA0051.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(211,'020/Bld.1/S.Umum/LK/12/2023','2023-12-05','Rukmana',17,7,'Kelas 16','Plapon belum terpasang','IMG-20231205-WA0053.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(212,'021/Bld.1/S.Umum/LK/12/2023','2023-12-05','Rukmana',17,40,'Kelas 16','Wallpaper lem nya terkelupas','IMG-20231205-WA0054.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(213,'022/Bld.1/S.Umum/LK/12/2023','2023-12-05','Saiful',19,7,'Musolah','Pelapon berjamur','IMG-20231205-WA0014.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(214,'023/Bld.1/S.Umum/LK/12/2023','2023-12-05','Saiful',1,41,'Lantai 1 no.22','Kusen di makan rayap','IMG-20231205-WA0007.jpeg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(215,'024/Bld.1/S.Umum/LK/12/2023','2023-12-07','Engkos',14,23,'Kamar nmr 3 lantai  2 ','Air shower panas terus,lampu toilet kamar pembantu mati,jam dinding rusak',NULL,NULL,NULL,3,NULL,NULL,NULL,NULL),
+(216,'025/Bld.1/S.Umum/LK/12/2023','2023-12-06','Engkos',14,13,'Kartika kamar nmr 1 lantai 2 ','Lampu balkon rusak',NULL,NULL,NULL,3,NULL,NULL,NULL,NULL),
+(217,'026/Bld.1/S.Umum/LK/12/2023','2023-12-06','Engkos',14,25,'Kartika lantai 2 nmr 6','Air wastafel tidak ngalir,',NULL,NULL,NULL,3,NULL,NULL,NULL,NULL),
+(218,'027/Bld.1/S.Umum/LK/12/2023','2023-12-06','Engkos',14,13,'Kartika lantai 3 nmr 5 ','Lampu ruang tamu,toilet ,kamar tidur utama mati minta di ganti,batre romot AC dan tv tidak ada,dispenser air belum ada',NULL,NULL,NULL,3,NULL,NULL,NULL,NULL),
+(219,'028/Bld.1/S.Umum/LK/12/2023','2023-12-06','Sumantri ',2,41,'Lantai 3 no.23','Kusen pintu depan lis tidak ada','17018264050456678360522316163061.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(220,'028/Bld.1/S.Umum/LK/12/2023','2023-12-06','Engkos',14,13,'Kolidor lantai 3 ','Lampu ruang jemur mati 1 buah,lampu kolidor mati 2 buah',NULL,NULL,NULL,3,NULL,NULL,NULL,NULL),
+(221,'028/Bld.1/S.Umum/LK/12/2023','2023-12-06','Engkos',14,13,'Kolidor lantai 3 ','Lampu ruang jemur mati 1 buah,lampu kolidor mati 2 buah',NULL,NULL,NULL,3,NULL,NULL,NULL,NULL),
+(222,'029/Bld.1/S.Umum/LK/12/2023','2023-12-06','Sumantri ',2,13,'Lantai 3 no.19','Lampu ruang tidur mati 1','17018266983458281016835391910052.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(223,'030/Bld.1/S.Umum/LK/12/2023','2023-12-06','Sumantri ',2,12,'Lantai 2 no.4','Saklar ruang tidur depan lemari rusak','1701827543940965214531493149762.jpg','Suherman','2023-12-06',2,'1','17018352606753458412973577420529.jpg','',''),
+(224,'031/Bld.1/S.Umum/LK/12/2023','2023-12-06','Sumantri ',2,15,'Lantai 2 no.6','AC ruang tamu tidak ada ','17018277666993452520155537019054.jpg','Administrator','2023-12-06',6,'1','awp.php','',''),
+(225,'032/Bld.1/S.Umum/LK/12/2023','2023-12-06','Sumantri ',2,15,'Lantai 2 no.8','AC ruang tamu tidak ada ','17018279052127992031588032138867.jpg','Administrator','2023-12-06',6,'1','ay.jpg','alpa.php',''),
+(226,'033/Bld.1/S.Umum/LK/12/2023','2023-12-06','Sumantri ',2,12,'Lantai 2 no.10','Saklar ruang tamu rusak ringan','17018279994087880855583403275609.jpg','Suherman','2023-12-06',2,'','17018355940205067042268340781405.jpg','',''),
+(227,'034/Bld.1/S.Umum/LK/12/2023','2023-12-06','Sumantri ',2,7,'Lantai 2 no.10','Plafon kamar mandi berjamur','17018281137116689473048980353266.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(228,'035/Bld.1/S.Umum/LK/12/2023','2023-12-13','Saiful',1,7,'Lantai.3 depan lif','Pelapon bocor depan lif','IMG20231206091343.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(229,'036/Bld.1/S.Umum/LK/12/2023','2023-12-06','Sumantri ',2,15,'Lantai 2 no.16','AC Ruang tamu tidak ada ','17018289194986903940054670988627.jpg','Umar','2023-12-06',6,'',NULL,NULL,''),
+(230,'037/Bld.1/S.Umum/LK/12/2023','2023-12-06','Sumantri ',2,12,'Lantai 2 no.18','Saklar ruang tamu rusak ringan 2 pcs','17018291947306465642100453408464.jpg','Suherman','2023-12-06',2,'',NULL,NULL,''),
+(231,'038/Bld.1/S.Umum/LK/12/2023','2023-12-06','Sumantri ',2,1,'Lantai 2 no.18','Keramik balkon ngangkat ','17018292861736776618910537824314.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(232,'039/Bld.1/S.Umum/LK/12/2023','2023-12-06','Saiful',1,7,'Lantai 3 no.13','Pelapon kamar mandi bocor','IMG20231206092145.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(233,'039/Bld.1/S.Umum/LK/12/2023','2023-12-06','Sumantri ',2,1,'Lantai 2 no.20','Keramik balkon ngangkat ','17018294091234299412838644763129.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(234,'040/Bld.1/S.Umum/LK/12/2023','2023-12-06','Saiful',1,7,'Kolidor lantai.2','Pelapon kolidor rusak depan kamar no.15 lantai.2','IMG20231206093105.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(235,'041/Bld.1/S.Umum/LK/12/2023','2023-12-06','Sumantri ',2,40,'Lift candra 2','Tombol lift lepas / tidak ada','20231206_100143.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(236,'042/Bld.1/S.Umum/LK/12/2023','2023-12-06','Rukmana',30,40,'Kelas lantai 2','Wallpaper lepas dan berjamur','IMG_20231206_150254_638.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(238,'043/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',1,7,'Kolidor lantai1','Kolidor lantai.1 samping kamar no.21','IMG20231207110923.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(239,'044/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',1,7,'Lantai.3 no.22','Pelapon bocor di atas lemari','IMG20231207111631.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(240,'045/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',1,7,'Lantai.3 no.12','Pelapon di ruang tidur bocor','IMG20231207111908.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(241,'046/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',1,21,'Lantai.3 no.12','Westapel bocor','IMG20231207111958.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(242,'047/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',1,41,'Lantai.no.6','Kusen keropos','IMG20231207112533.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(243,'048/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',1,40,'Lantai.1 no.2','Kayu los pintu keropos','IMG20231207112832.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(244,'049/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',1,41,'Lantai.1 no.4','Kusen sama Lis pintu keropos di makan rayap','IMG20231207113259.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(245,'050/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',16,7,'Kantor lantai 2 kolidor ','Pelapon bocor ','IMG20231207113947.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(246,'051/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',16,0,'Kolidor lantai.2','Lampu kolidor mati','IMG20231207114311.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(247,'052/Bld.1/S.Umum/LK/12/2023','2023-12-07','Engkos',33,40,'Gedung fitnes ','Treadmill rusak 1 buah',NULL,NULL,NULL,3,NULL,NULL,NULL,NULL),
+(248,'053/Bld.1/S.Umum/LK/12/2023','2023-12-07','Engkos',33,40,'Fitnes','Treadmill rusak satu buah',NULL,NULL,NULL,3,NULL,NULL,NULL,NULL),
+(249,'054/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',1,24,'Lantai.2 no.14','Closet goyang','IMG-20231207-WA0014.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(250,'055/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',1,7,'Lantai.2 no.12','Pelapon kamar mandi bocor','IMG-20231207-WA0015.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(251,'056/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',1,7,'Lantai 2 no.14','Pelapon kamar mandi bocor','IMG-20231207-WA0016.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(252,'057/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',1,40,'Lantai.2 no 18','Keramik ruang tamu','IMG-20231207-WA0017.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(253,'058/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',1,24,'Lantai 2 no 11','Closet ngocor terus','IMG-20231207-WA0019.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(254,'059/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',1,2,'Lantai.2 no.17','Dingding rembes ruang tidur','IMG-20231207-WA0020.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(255,'060/Bld.1/S.Umum/LK/12/2023','2023-12-07','Saiful',1,2,'Lantai 2 no.21','Dingding rembes','IMG-20231207-WA0022.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(257,'061/Bld.1/S.Umum/LK/12/2023','2023-12-09','Engkos',37,2,'Pagar panel','Pagar atas panel lepas',NULL,NULL,NULL,3,NULL,NULL,NULL,NULL),
+(258,'062/Bld.1/S.Umum/LK/12/2023','2023-12-13','Saiful',1,11,'Lantai no.2','Stop kontak rusak','IMG20231213081748.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(259,'063/Bld.1/S.Umum/LK/12/2023','2023-12-15','Rukmana',17,5,'Kelas basemen 1 dan 3','Kunci pintu  kelas patah','IMG-20231215-WA0061.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(261,'064/Bld.1/S.Umum/LK/12/2023','2023-12-11','Saiful',16,1,'Kolidor lantai.2','Keramik ngangkat kolidor ','IMG20231218085527.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(263,'065/Bld.1/S.Umum/LK/12/2023','2023-12-18','Saiful',1,7,'Lantai.1 no.8','Pelapon kamar mandi/SOP kontak rusak','IMG20231218092341.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(264,'066/Bld.1/S.Umum/LK/12/2023','2023-12-20','Saiful',19,40,'Musolah ','Welpeper lembab','IMG20231220093905.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(265,'067/Bld.1/S.Umum/LK/12/2023','2023-12-20','Saiful',19,7,'Transit samping','Pelapon berjamur','',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(266,'068/Bld.1/S.Umum/LK/12/2023','2023-12-22','Rukmana',18,15,'Serbaguna lantai 1','Ac standing 3 unit tidak berfungsi','IMG_20231222_083527_359.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(267,'069/Bld.1/S.Umum/LK/12/2023','2023-12-22','Rukmana',18,40,'Serbaguna lantai 1','Kipas angin gak berfungsi','IMG_20231222_083817_396.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(268,'070/Bld.1/S.Umum/LK/12/2023','2023-12-22','Rukmana',18,15,'Gedung serbaguna lantai 2','4 unit ac standing tidak berpungsi','IMG_20231222_083527_359.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL),
+(269,'071/Bld.1/S.Umum/LK/12/2023','2023-12-22','Rukmana',18,11,'Serbaguna lantai 1','Stop kontak kipas angin rusak tidak berpungsi','IMG_20231222_083828_319.jpg',NULL,NULL,3,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `lantai` */
 
@@ -250,7 +254,7 @@ CREATE TABLE `lantai` (
   `nama_lantai` varchar(50) DEFAULT NULL,
   `aktif` enum('Ya','Tidak') DEFAULT 'Ya',
   PRIMARY KEY (`id_lantai`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `lantai` */
 
@@ -271,7 +275,7 @@ CREATE TABLE `ruangan` (
   `id_lantai` int(11) DEFAULT NULL,
   `aktif` enum('Ya','Tidak') DEFAULT 'Ya',
   PRIMARY KEY (`id_ruangan`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 /*Data for the table `ruangan` */
 
@@ -296,7 +300,7 @@ CREATE TABLE `status_perbaikan` (
   `id_status_perbaikan` int(11) NOT NULL AUTO_INCREMENT,
   `nama_status_perbaikan` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id_status_perbaikan`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `status_perbaikan` */
 
@@ -327,21 +331,25 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`username`,`password`,`nama_lengkap`,`email`,`no_telp`,`level`,`blokir`,`id_session`) values 
-('admin','21232f297a57a5a743894a0e4a801fc3','Administrator','admin@gmail.com','','admin','N','97fa7u3p34t7mg9k6hh9q6cre1'),
-('teknisi','e21394aaeee10f917f581054d24b031f','Teknisi','teknisi@gmail.com','','teknisi','N','fk30ao85s2fsgqgasgmk1lvpk1'),
-('supervisor','09348c20a019be0318387c08df7a783d','Supervisor','supervisor@gmail.com','','supervisor','N','tqup7qeefuvr9nuchpcb8o1t20'),
-('pimpinan','90973652b88fe07d05a4304f0a945de8','Faruq Indrakusumah','','','pimpinan','N','6cfn9lj2sqd9nig6nbnjh01so5'),
-('umar','92deb3f274aaee236194c05729bfa443','Umar','','','teknisi','N','6jfivv71kc2svlrbie4sop23i2'),
-('supri','d79444495ba8886c397b418227564d3f','Supri','','','teknisi','N','3l1v7tqm6pivajtl8ttckrvk12'),
-('suherman','32b092f86e6995e1607ae9122b79b032','Suherman','','','teknisi','N','611rji69afed10im964d8nlm02'),
-('halim','1d75dcced380911afbad64d9be84472b','Halim','','','teknisi','N','5a1ovcb81670ptck4c4mglqqv1'),
-('wawan','0a000f688d85de79e3761dec6816b2a5','Wawan','','','teknisi','N','gciqdjtfk5uq6egpgd9uk4i4s1'),
-('sangwar','37772695500a673b912944e74c2df4c4','Sangwar','','','teknisi','N','tbcsv0phbeia3fm319ljhpgr73'),
-('cecep','aff738ac6681f847310d38af54327734','Cecep','','','supervisor','N','2nch5i7mf617q99vh12si5hfo6'),
-('saipul','0df98fedfb246b51562ba130fc39b376','Saipul','','','supervisor','N','hvnqu1po07ldrnu6h28hktmmp3'),
-('rukmana','2f3a02afa53bcd8ee4ae9e2652f68fda','Rukmana','','','supervisor','N','mf8937ghe4q52li48o7ofqfna3'),
-('engkos','e90d201a853c919812d5c9c7f83d8e2b','Engkos','','','supervisor','N','fcsal20nbhvug1q7oadrdhp767'),
-('sumantri','59dfe5f23397bbe534d99490cb578918','Sumantri','','','supervisor','N','l19tn7ogiakgkr9vnq4pui3h92');
+('admin','21232f297a57a5a743894a0e4a801fc3','Administrator','admin@gmail.com','','admin','N','fsiohvk8h1sispbvqbcg5ncik6'),
+('teknisi','e21394aaeee10f917f581054d24b031f','Teknisi','teknisi@gmail.com','','teknisi','N','t00fs1mcdsddboteq91bm8o814'),
+('supervisor','09348c20a019be0318387c08df7a783d','Supervisor','supervisor@gmail.com','','supervisor','N','kdsmhd1300p85l0n0ebup51el5'),
+('faruq','8e9f4806d6cdc02e0a064110e8070571','Faruq','','','admin','N','lt9aqtos35o0vbbh37r22jc6j6'),
+('umar','92deb3f274aaee236194c05729bfa443','Umar','','','teknisi','N','hvrj08ibquh5gm2g8nuproefc6'),
+('supri','d79444495ba8886c397b418227564d3f','Supri','','','teknisi','N','ebn42loh94aet5uqqohfp82or0'),
+('suherman','32b092f86e6995e1607ae9122b79b032','Suherman','','','teknisi','N','qo4mvvd6rgrgqg2d990pckpj93'),
+('halim','1d75dcced380911afbad64d9be84472b','Halim','','','teknisi','N','rpfgp5dkll494rjmhkob4c4o41'),
+('wawan','0a000f688d85de79e3761dec6816b2a5','Wawan','','','teknisi','N','q4387pd795f21ae4jjd9ilqpo7'),
+('sangwar','37772695500a673b912944e74c2df4c4','Sangwar','','','teknisi','N','nro8b8ct628k4fc4nin48jejv2'),
+('cecep','aff738ac6681f847310d38af54327734','Cecep','','','supervisor','N','u655mfibdge86amhltngv0bd64'),
+('saipul','0df98fedfb246b51562ba130fc39b376','Saiful','','','supervisor','N','p1uo64bhkoc79qii8f4pmls1b5'),
+('rukmana','2f3a02afa53bcd8ee4ae9e2652f68fda','Rukmana','','','supervisor','N','2h392baf4ofcdhuvv9ie8e2q90'),
+('engkos','e90d201a853c919812d5c9c7f83d8e2b','Engkos','','','supervisor','N','kbsjbsk4r2mhd9ohh003145bo1'),
+('sumantri','59dfe5f23397bbe534d99490cb578918','Sumantri','','','supervisor','N','cnr02q8bltg0cpjcs47mqla3q2'),
+('maulana','aff4b352312d5569903d88e0e68d3fbb','Maulana','','','pimpinan','N','b8vlbq7pl7heq8e09rdgig30h1'),
+('sugondo','e1ac6f5e8028cbb0ceb47f21efabbbc0','Sugondo','','','pimpinan','N','n1ut0hn5l3255r0kcgnpcdok87'),
+('hendaryani','a5588ed284dcbd295deb330227a81189','Hendaryani','','','admin','N','a5588ed284dcbd295deb330227a81189'),
+('wahyu','32c9e71e866ecdbc93e497482aa6779f','Wahyu','','','admin','N','hjj11s0nmltr9dr00rn754rli5');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
