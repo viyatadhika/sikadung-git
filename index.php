@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Login Sistem Informasi Kerusakan Gedung</title>
+  <link rel="icon" href="images/web_hi_res_512.png" type="image/png" />
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -31,7 +32,7 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-  <p class='fadeIn animated'><center><img src='images/Mahkamah Agung.png' width="67" height="84"></center></p>
+  <p class='fadeIn animated'><center><img src='images/web_hi_res_512.png' width="67" height="67"></center></p>
   <center><h3><small><b>SISTEM INFORMASI KERUSAKAN GEDUNG</b></small></h3>
     Silahkan Masukan Username dan Password</center><br>
     <form action="cek_login.php" method="post">

@@ -61,6 +61,7 @@ else{
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Sistem Informasi Kerusakan Gedung</title>
+    <link rel='icon' href='images/web_hi_res_512.png' type='image/png' />
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link rel='stylesheet' href='bootstrap/css/bootstrap.min.css'>
     <link rel='stylesheet' href='plugins/datepicker/datepicker3.css'>
@@ -94,12 +95,12 @@ else{
           <ul class='nav navbar-nav'>         
             <li class='dropdown user user-menu'>
               <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-                <img src='images/Mahkamah Agung.png' class='user-image' alt='User Image'>
+                <img src='images/web_hi_res_512.png' class='user-image' alt='User Image'>
                 <span class='hidden-xs'>Administrator</span>
               </a>
               <ul class='dropdown-menu'>
                 <li class='user-header'>
-                  <img src='images/Mahkamah Agung.png' class='img-circle' alt='User Image'>
+                  <img src='images/web_hi_res_512.png' class='img-circle' alt='User Image'>
                   <p>Administrator</p>
                 </li>
                 <li class='user-footer'>
@@ -119,12 +120,12 @@ else{
           <ul class='nav navbar-nav'>         
             <li class='dropdown user user-menu'>
               <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-                <img src='images/Mahkamah Agung.png' class='user-image' alt='User Image'>
+                <img src='images/web_hi_res_512.png' class='user-image' alt='User Image'>
                 <span class='hidden-xs'>Pimpinan</span>
               </a>
               <ul class='dropdown-menu'>
                 <li class='user-header'>
-                  <img src='images/Mahkamah Agung.png' class='img-circle' alt='User Image'>
+                  <img src='images/web_hi_res_512.png' class='img-circle' alt='User Image'>
                   <p>$_SESSION[namalengkap]
                   <small>Pimpinan <b>S</b>istem <b>I</b>nformasi <b>K</b>erus<b>A</b>kan ge<b>DUNG</b></small>
                   </p>
@@ -138,12 +139,12 @@ else{
           <ul class='nav navbar-nav'>         
             <li class='dropdown user user-menu'>
               <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-                <img src='images/Mahkamah Agung.png' class='user-image' alt='User Image'>
+                <img src='images/web_hi_res_512.png' class='user-image' alt='User Image'>
                 <span class='hidden-xs'>Teknisi</span>
               </a>
               <ul class='dropdown-menu'>
                 <li class='user-header'>
-                  <img src='images/Mahkamah Agung.png' class='img-circle' alt='User Image'>
+                  <img src='images/web_hi_res_512.png' class='img-circle' alt='User Image'>
                   <p>$_SESSION[namalengkap]
                   <small>Teknisi <b>S</b>istem <b>I</b>nformasi <b>K</b>erus<b>A</b>kan ge<b>DUNG</b></small>
                   </p>
@@ -157,12 +158,12 @@ else{
           <ul class='nav navbar-nav'>         
             <li class='dropdown user user-menu'>
               <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
-                <img src='images/Mahkamah Agung.png' class='user-image' alt='User Image'>
+                <img src='images/web_hi_res_512.png' class='user-image' alt='User Image'>
                 <span class='hidden-xs'>Supervisor</span>
               </a>
               <ul class='dropdown-menu'>
                 <li class='user-header'>
-                  <img src='images/Mahkamah Agung.png' class='img-circle' alt='User Image'>
+                  <img src='images/web_hi_res_512.png' class='img-circle' alt='User Image'>
                   <p>$_SESSION[namalengkap]
                   <small>Supervisor <b>S</b>istem <b>I</b>nformasi <b>K</b>erus<b>A</b>kan ge<b>DUNG</b></small>
                   </p>

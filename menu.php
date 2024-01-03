@@ -5,7 +5,7 @@ if ($_SESSION['leveluser'] == 'admin') {
 	echo "
 	  	<div class='user-panel'>
 			<div class='pull-left image'>
-		  		<img src='images/Mahkamah Agung.png' class='img-circle' alt='User Image'>
+		  		<img src='images/web_hi_res_512.png' class='img-circle' alt='User Image'>
 			</div>
 			<div class='pull-left info'>
 		  		<p>$_SESSION[namalengkap]</p>
@@ -66,7 +66,7 @@ else if ($_SESSION['leveluser'] == 'teknisi') {
 	echo "
 	  	<div class='user-panel'>
 			<div class='pull-left image'>
-		  		<img src='images/Mahkamah Agung.png' class='img-circle' alt='User Image'>
+		  		<img src='images/web_hi_res_512.png' class='img-circle' alt='User Image'>
 			</div>
 			<div class='pull-left info'>
 		  		<p>$_SESSION[namalengkap]</p>
@@ -96,7 +96,7 @@ else if ($_SESSION['leveluser'] == 'supervisor') {
 	echo "
 	  	<div class='user-panel'>
 			<div class='pull-left image'>
-		  		<img src='images/Mahkamah Agung.png' class='img-circle' alt='User Image'>
+		  		<img src='images/web_hi_res_512.png' class='img-circle' alt='User Image'>
 			</div>
 			<div class='pull-left info'>
 		  		<p>$_SESSION[namalengkap]</p>
@@ -123,7 +123,7 @@ else {
 	echo "
 	  	<div class='user-panel'>
 			<div class='pull-left image'>
-		  		<img src='images/Mahkamah Agung.png' class='img-circle' alt='User Image'>
+		  		<img src='images/web_hi_res_512.png' class='img-circle' alt='User Image'>
 			</div>
 			<div class='pull-left info'>
 		  		<p>$_SESSION[namalengkap]</p>

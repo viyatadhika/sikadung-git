@@ -5,8 +5,11 @@ function anti_injection($data){
   return $filter;
 }
 
-$username = anti_injection($_POST['username']);
-$pass     = anti_injection(md5($_POST['password']));
+//$username = anti_injection($_POST['username']);
+//$pass     = anti_injection(md5($_POST['password']));
+
+$username = htmlspecialchars($_POST['username']);
+$pass     = htmlspecialchars(md5($_POST['password']));
 
 // pastikan username dan password adalah berupa huruf atau angka.
 if (!ctype_alnum($username) OR !ctype_alnum($pass)){
